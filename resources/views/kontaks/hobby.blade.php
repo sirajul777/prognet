@@ -95,7 +95,7 @@
             <input type="text" hidden id="idHobby" name="idHobby">
             <div class="mb-3">
                 <label for="hobby" class="form-label">Nama Hoby</label>
-                <input type="text" name="editHobby" class="form-control" id=" " aria-describedby="emailHelp" required>
+                <input type="text" name="editHobby" class="form-control" id="editHobby" aria-describedby="emailHelp" required>
             </div>
             
             <div class="modal-footer">

@@ -72,9 +72,12 @@ class HobbyController extends Controller
      * @param  \App\Hobby  $hobby
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hobby $hobby)
+    public function update(Request $request)
     {
-        //
+        $hobby = Hobby::find($request->idHobby);
+        $hobby->hobby = $request->editHobby;
+        $hobby->update();
+        return redirect('/hobby');
     }
 
     /**
@@ -83,8 +86,10 @@ class HobbyController extends Controller
      * @param  \App\Hobby  $hobby
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hobby $hobby)
+    public function destroy($id)
     {
-        //
+        $hobby = Hobby::find($id);
+        $hobby->delete();
+        return redirect('/hobby');
     }
 }

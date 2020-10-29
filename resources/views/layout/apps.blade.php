@@ -110,13 +110,7 @@
         });
 
         const xhttp = new XMLHttpRequest;;
-        var edit = document.getElementsByClassName('edit');
-        const nama = document.getElementById('nama');
-        const alamat = document.getElementById('alamat');
-        const email = document.getElementById('email');
-        const telepon = document.getElementById('telepon');
-        const golongan = document.getElementById('golongan');
-
+        
         
 
         $(document).on('click','.edit',function(){
@@ -134,7 +128,7 @@
         $(document).on('click','.editHobby',function(){
           var idEdit = $(this).attr('id');
           console.log(idEdit);
-          $.get('kontak/' + idEdit +'/edit', function (data) {
+          $.get('hobby/' + idEdit +'/edit', function (data) {
             $('#updateHobby #idHobby').val(idEdit);
             $('#updateHobby #editHobby').val(data.hobby);
           })
