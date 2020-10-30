@@ -15,9 +15,11 @@ class CreateKontakHobbiesTable extends Migration
     {
         Schema::create('kontak_hobbies', function (Blueprint $table) {
             $table->id();
-            $table->integer('kontakid');
-            $table->integer('hobbyid');
+            $table->unsignedBigInteger('kontakid');
+            $table->unsignedBigInteger('hobbyid');
             $table->timestamps();
+            $table->foreign('kontakid')->references('id')->on('kontaks');
+            $table->foreign('hobbyid')->references('id')->on('hobbies');
         });
     }
 

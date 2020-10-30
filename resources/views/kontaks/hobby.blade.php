@@ -5,7 +5,7 @@
 @section('mid')
 
 <div class="table-responsive">
-<table class="table table-warning table-triped ">
+<table class="table table-warning table-triped text-center">
     <tr>
         <th>no</th>
         <th>hobby</th>
@@ -16,7 +16,7 @@
     <?php 
 
     $no = 1;
-
+    
     ?>
         @foreach($hobby as $hobby)
             <tr>

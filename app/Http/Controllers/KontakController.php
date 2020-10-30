@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Kontak;
+use App\GolonganDarah;
 use Illuminate\Http\Request;
 
 class KontakController extends Controller
@@ -15,8 +16,9 @@ class KontakController extends Controller
      */
     public function index()
     {
-        $kontak = Kontak::latest()->get();
-        return view('kontaks.kontak', compact('kontak'));
+        $kontak = Kontak::all();
+        $darahid = GolonganDarah::all();
+        return view('kontaks.kontak', ['kontak' => $kontak, 'darahid' => $darahid]);
     }
 
     /**

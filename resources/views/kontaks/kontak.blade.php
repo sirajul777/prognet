@@ -38,10 +38,9 @@
                 <label for="golonganD" class="form-label">Golongan Darah</label>
                 <select class="form-select" aria-label="Default select example" name="golonganD" required>
                     <option value="" selected disable>Pilih golongan darah</option>
-                    <option value="1">A</option>
-                    <option value="2">B</option>
-                    <option value="3">AB</option>
-                    <option value="4">O</option>
+                    @foreach ($darahid as $item)
+                        <option value="{{ $item->id }}">{{ $item->goldarah }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="modal-footer">
@@ -65,19 +64,20 @@
 @section('mid')
 
 <div class="table-responsive">
-<table class="table table-warning table-triped ">
+<table class="table table-warning table-triped text-center">
     <tr>
         <th>no</th>
         <th>nama</th>
         <th>telephon</th>
         <th>email</th>
+        <th>alamat</th>
         <th>golongan darah</th>
         <th>opsi</th>
     </tr>
     <?php 
 
     $no = 1;
-
+    $darah = array('A','B','AB','O' );
     ?>
         @foreach($kontak as $kontak)
             <tr>
@@ -85,7 +85,9 @@
                 <td class="table-dark">{{ $kontak->nama }}</td>
                 <td class="table-dark">{{ $kontak->telepon }}</td>
                 <td class="table-dark">{{ $kontak->email }}</td>
-                <td class="table-dark">{{ $kontak->darahid }}</td>
+                <td class="table-dark">{{ $kontak->alamat }}</td>
+                <td class="table-dark">{{ $kontak->darah->goldarah }}</td>
+                
                 <td class="d-flex m-auto">
                     <form action="/kontak/{{ $kontak->id }}" method="POST"> 
                         <button type="button" id="{{ $kontak->id }}" class="btn btn-info edit" data-toggle="modal" data-target="#editModals">Edit</button>

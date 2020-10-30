@@ -18,9 +18,10 @@ class CreateKontaksTable extends Migration
             $table->string('nama', 50);
             $table->string('alamat', 100);
             $table->string('telepon', 30);
-            $table->integer('darahid');
+            $table->unsignedBigInteger('darahid');
             $table->string('email', 100);
             $table->timestamps();
+            $table->foreign('darahid')->references('id')->on('golongan_darahs');
         });
     }
 

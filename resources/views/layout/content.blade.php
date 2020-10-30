@@ -6,12 +6,17 @@
             <ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link" id="menu-kontak" href="{{ '/kontak' }}">
-                  Dashboard
+                  Kontak
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="menu-hobby" href="{{ '/hobby' }}">
-                  Tambah Hoby
+                  Hobbies
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="menu-hobby" href="{{ '/kontak-hobbies' }}">
+                  Kontak x Hobbies
                 </a>
               </li>
             </ul>
