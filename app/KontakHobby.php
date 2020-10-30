@@ -10,10 +10,10 @@ class KontakHobby extends Model
 
     public function kontak()
     {
-        return $this->hasMany(Kontak::class);
+        return $this->belongsTo('App\Kontak');
     }
     public function hobby()
     {
-        return $this->hasMany(Hobby::class);
+        return $this->belongsTo('App\Hobby');
     }
 }

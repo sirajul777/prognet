@@ -18,8 +18,8 @@ class CreateKontakHobbiesTable extends Migration
             $table->unsignedBigInteger('kontakid');
             $table->unsignedBigInteger('hobbyid');
             $table->timestamps();
-            $table->foreign('kontakid')->references('id')->on('kontaks');
-            $table->foreign('hobbyid')->references('id')->on('hobbies');
+            $table->foreign('kontakid')->references('id')->on('kontaks')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('hobbyid')->references('id')->on('hobbies')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

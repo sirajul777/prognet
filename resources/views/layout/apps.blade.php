@@ -112,7 +112,7 @@
         const xhttp = new XMLHttpRequest;;
         
         
-
+        // tombol edit kontak
         $(document).on('click','.edit',function(){
           var idEdit = $(this).attr('id');
           $.get('kontak/' + idEdit +'/edit', function (data) {
@@ -125,6 +125,7 @@
           })
         });
 
+        // tombol edit hobby
         $(document).on('click','.editHobby',function(){
           var idEdit = $(this).attr('id');
           console.log(idEdit);
@@ -134,22 +135,30 @@
           })
         });
 
-
-
-        $(document).on('click','.delete',function(){
-          var idDelete = $(this).attr('id');
-          confirm("Are You sure want to delete !");
-          $.ajax({
-              type: 'DELETE',
-              url: "/kontak"+ '/'+idDelete,
-              data: {id:idDelete},
-              success: function() {
-                  $('#updateData #id').val(idEdit);
-              }, error: function(response){
-                  console.log(response.responseText);
-              }
-          });
+        // tombol tambah hobby untuk kontak dengan id
+        $(document).on('click','.tamHobby',function(){
+          var idEdit = $(this).attr('id');
+          console.log(idEdit);
+          $('#tamkonhob #idkonHob').val(idEdit);
         });
+
+
+
+        // // delete kontak
+        // $(document).on('click','.delete',function(){
+        //   var idDelete = $(this).attr('id');
+        //   confirm("Are You sure want to delete !");
+        //   $.ajax({
+        //       type: 'DELETE',
+        //       url: "/kontak"+ '/'+idDelete,
+        //       data: {id:idDelete},
+        //       success: function() {
+        //           $('#updateData #id').val(idEdit);
+        //       }, error: function(response){
+        //           console.log(response.responseText);
+        //       }
+        //   });
+        // });
     </script>
   
     <!-- Option 2: Separate Popper.js and Bootstrap JS

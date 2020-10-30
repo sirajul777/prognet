@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\KontakHobby;
+use App\Kontak;
+use App\Hobby;
 use Illuminate\Http\Request;
 
 class KontakHobbyController extends Controller
@@ -14,7 +16,10 @@ class KontakHobbyController extends Controller
      */
     public function index()
     {
-        //
+        $k = Kontak::all();
+        $h = Hobby::all();
+
+        return view('kontaks.kontakHobby', compact('k', 'h'));
     }
 
     /**
@@ -35,7 +40,12 @@ class KontakHobbyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kh = new KontakHobby();
+        $kh->kontakid = $request->idkonHob;
+        $kh->hobbyid = $request->hobby;
+        $kh->save();
+
+        return redirect('/kontak-hobbies');
     }
 
     /**

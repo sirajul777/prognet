@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use App\Kontak;
 use App\GolonganDarah;
+use App\Hobby;
+use App\KontakHobby;
 use Illuminate\Http\Request;
 
 class KontakController extends Controller
@@ -18,7 +20,8 @@ class KontakController extends Controller
     {
         $kontak = Kontak::all();
         $darahid = GolonganDarah::all();
-        return view('kontaks.kontak', ['kontak' => $kontak, 'darahid' => $darahid]);
+        $hobby = Hobby::all();
+        return view('kontaks.kontak', ['kontak' => $kontak, 'darahid' => $darahid, 'hobby' => $hobby]);
     }
 
     /**
@@ -46,6 +49,11 @@ class KontakController extends Controller
         $kontak->email = $request->email;
         $kontak->darahid = $request->golonganD;
         $kontak->save();
+        $kh = new KontakHobby();
+        $kh->kontakid = $kontak->id;
+        $kh->hobbyid = $request->hobby;
+        $kh->save();
+
         return redirect('/kontak');
     }
 

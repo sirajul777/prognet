@@ -12,4 +12,14 @@ class Kontak extends Model
     {
         return $this->hasOne('App\GolonganDarah', 'id', 'darahid');
     }
+
+    // public function kontakHobby()
+    // {
+    //     return $this->belongsToMany('App\KontakHobby');
+    // }
+
+    public function hobby()
+    {
+        return $this->belongsToMany(Hobby::class, 'kontak_hobbies', 'kontakid', 'hobbyid');
+    }
 }

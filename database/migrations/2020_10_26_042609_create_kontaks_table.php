@@ -21,7 +21,7 @@ class CreateKontaksTable extends Migration
             $table->unsignedBigInteger('darahid');
             $table->string('email', 100);
             $table->timestamps();
-            $table->foreign('darahid')->references('id')->on('golongan_darahs');
+            $table->foreign('darahid')->references('id')->on('golongan_darahs')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

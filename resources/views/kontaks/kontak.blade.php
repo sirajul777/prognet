@@ -35,6 +35,15 @@
                 <input type="text" name="email" class="form-control" id="email" required>
             </div>
             <div class="mb-3">
+                <label for="hobby" class="form-label">hobby</label>
+                <select class="form-select" aria-label="Default select example" name="hobby" required>
+                    <option value="" selected disable>Pilih Hobby</option>
+                    @foreach ($hobby as $item)
+                        <option value="{{ $item->id }}">{{ $item->hobby }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="golonganD" class="form-label">Golongan Darah</label>
                 <select class="form-select" aria-label="Default select example" name="golonganD" required>
                     <option value="" selected disable>Pilih golongan darah</option>
