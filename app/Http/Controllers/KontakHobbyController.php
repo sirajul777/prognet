@@ -45,23 +45,29 @@ class KontakHobbyController extends Controller
         // request dari form
         $idKreq = $request->idkonHob;
         $idhreq = $request->hobby;
-        $idKontak = KontakHobby::where('kontakid', $idKreq)->get();
-        $idHobby = KontakHobby::where('hobbyid', '=', $idhreq)->get();
+        $idKontak = KontakHobby::where('kontakid', '=', $idKreq)->first('kontakid');
+
 
         // request dari database
-        if (!$idKontak) {
-            if ($idHobby) {
+        //todo kontak ada
+        if ($idKontak != null) {
+            $hobby = KontakHobby::where('kontakid', '=', $idKreq)->where('hobbyid', '=', $idhreq)->select('hobbyid')->first('hobbyid');
+            // ! jika hoby sudah di pilih
+            if ($hobby != null) {
+                return redirect('/kontak-hobbies');
+            } else {
                 $kh->kontakid = $idKreq;
                 $kh->hobbyid = $idhreq;
                 $kh->save();
-            } else {
-                echo "hobby sudah terdaftar";
+                return redirect('/kontak-hobbies');
             }
         } else {
-            echo "kontak tidak terdaftar";
+            // todo hobby tidak ada
+            $kh->kontakid = $idKreq;
+            $kh->hobbyid = $idhreq;
+            $kh->save();
+            return redirect('/kontak-hobbies');
         }
-
-        return redirect('/kontak-hobbies');
     }
 
     /**

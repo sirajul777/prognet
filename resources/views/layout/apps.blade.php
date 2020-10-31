@@ -82,7 +82,6 @@
   </head>
   <body>
 
-    
     @include('layout.navbar')
 
     @include('layout.content')
