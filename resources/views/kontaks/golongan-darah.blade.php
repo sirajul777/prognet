@@ -1,6 +1,6 @@
 @extends('layout.apps')
-@section('title','Hoby')
-@section('titleContent','List Hoby')
+@section('title','Golongan Darah')
+@section('titleContent','List Golongan Darah')
 
 @section('mid')
 
@@ -8,7 +8,9 @@
 <table class="table table-warning table-triped text-center">
     <tr>
         <th>no</th>
-        <th>hobby</th>
+        <th>darah</th>
+        <th>Rhesus</th>
+        
         <th>opsi</th>
     </tr>
     <?php 
@@ -16,13 +18,14 @@
     $no = 1;
     
     ?>
-        @foreach($hobby as $hobby)
+        @foreach($darah as $darah)
             <tr>
                 <td class="table-dark"><?= $no++ ?></td>
-                <td class="table-dark">{{ $hobby->hobby }}</td>
+                <td class="table-dark">{{ $darah->goldarah }}</td>
+                <td class="table-dark">{{ $darah->rhesus }}</td>
                 <td class="table-dark">
-                    <form action="/hobby/{{ $hobby->id }}" method="POST"> 
-                        <button type="button" id="{{ $hobby->id }}" class="btn btn-info editHobby" data-toggle="modal" data-target="#editHobby">Edit</button>
+                    <form action="/golonganDarah/{{ $darah->id }}" method="POST"> 
+                        <button type="button" id="{{ $darah->id }}" class="btn btn-info editDarah" data-toggle="modal" data-target="#editdarah">Edit</button>
                         
                         @csrf
                         {{ method_field('DELETE') }}
@@ -55,11 +58,15 @@
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="{{ route('hobby.store') }}" method="post">
+        <form action="{{ route('golonganDarah.store') }}" method="POST">
             @csrf
             <div class="mb-3">
-                <label for="hobby" class="form-label">Nama Hoby</label>
-                <input type="text" name="hobby" class="form-control" id="hobby" aria-describedby="emailHelp" required>
+                <label for="darah" class="form-label">Golongan Darah</label>
+                <input type="text" name="darah" class="form-control" id="darah" aria-describedby="emailHelp" required>
+            </div>
+            <div class="mb-3">
+                <label for="rhesus" class="form-label">Rhesus</label>
+                <input type="text" name="rhesus" class="form-control" id="rhesus" aria-describedby="emailHelp" required>
             </div>
             
             <div class="modal-footer">
@@ -76,22 +83,26 @@
 
 
 @endsection
-<!-- Edit hobby Modal -->
-<div class="modal fade" id="editHobby" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Edit darah Modal -->
+<div class="modal fade" id="editdarah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Hobby</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Golongan Darah</h5>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="updateHobby" action="{{ route('hobby.update',$hobby) }}" method="POST">
+        <form id="updatedarah" action="{{ route('golonganDarah.update',$darah) }}" method="POST">
             @csrf
              {{ method_field('PUT') }}
-            <input type="text" hidden id="idHobby" name="idHobby">
+            <input type="text" hidden id="iddarah" name="iddarah">
             <div class="mb-3">
-                <label for="hobby" class="form-label">Nama Hoby</label>
-                <input type="text" name="editHobby" class="form-control" id="editHobby" aria-describedby="emailHelp" required>
+                <label for="darah" class="form-label">Golongan Darah</label>
+                <input type="text" name="editDarah" class="form-control" id="editDarah" aria-describedby="emailHelp" required>
+            </div>
+            <div class="mb-3">
+                <label for="rhesus" class="form-label">Rheusus</label>
+                <input type="text" name="editRhesus" class="form-control" id="editRhesus" aria-describedby="emailHelp" required>
             </div>
             
             <div class="modal-footer">

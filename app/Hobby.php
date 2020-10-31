@@ -12,8 +12,4 @@ class Hobby extends Model
     {
         return $this->belongsToMany(Kontak::class, 'kontak_hobies', 'kontakid', 'hobbyid');
     }
-    // public function kontakHobby()
-    // {
-    //     return $this->hasMany('App\KontakHobby');
-    // }
 }

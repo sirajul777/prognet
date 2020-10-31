@@ -128,18 +128,31 @@
         // tombol edit hobby
         $(document).on('click','.editHobby',function(){
           var idEdit = $(this).attr('id');
-          console.log(idEdit);
           $.get('hobby/' + idEdit +'/edit', function (data) {
             $('#updateHobby #idHobby').val(idEdit);
             $('#updateHobby #editHobby').val(data.hobby);
           })
         });
 
+        // tombol edit golongan darah
+        $(document).on('click','.editDarah',function(){
+          var idEdit = $(this).attr('id');
+          
+          $.get('golonganDarah/' + idEdit +'/edit', function (data) {
+            $('#editdarah #iddarah').val(idEdit);
+            $('#editdarah #editDarah').val(data.goldarah);
+            $('#editdarah #editRhesus').val(data.rhesus);
+          })
+        });
+
         // tombol tambah hobby untuk kontak dengan id
         $(document).on('click','.tamHobby',function(){
           var idEdit = $(this).attr('id');
-          console.log(idEdit);
           $('#tamkonhob #idkonHob').val(idEdit);
+        });
+        // tombol edit kontak hobby
+        $(document).on('click','.editHob',function(){
+          var idEdit = $(this).attr('id');
         });
 
 

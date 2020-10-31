@@ -15,6 +15,11 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" id="menu-hobby" href="{{ '/golonganDarah' }}">
+                  Golongan Darah
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" id="menu-hobby" href="{{ '/kontak-hobbies' }}">
                   Kontak x Hobbies
                 </a>

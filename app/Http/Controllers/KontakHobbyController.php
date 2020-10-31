@@ -41,9 +41,25 @@ class KontakHobbyController extends Controller
     public function store(Request $request)
     {
         $kh = new KontakHobby();
-        $kh->kontakid = $request->idkonHob;
-        $kh->hobbyid = $request->hobby;
-        $kh->save();
+
+        // request dari form
+        $idKreq = $request->idkonHob;
+        $idhreq = $request->hobby;
+        $idKontak = KontakHobby::where('kontakid', $idKreq)->get();
+        $idHobby = KontakHobby::where('hobbyid', '=', $idhreq)->get();
+
+        // request dari database
+        if (!$idKontak) {
+            if ($idHobby) {
+                $kh->kontakid = $idKreq;
+                $kh->hobbyid = $idhreq;
+                $kh->save();
+            } else {
+                echo "hobby sudah terdaftar";
+            }
+        } else {
+            echo "kontak tidak terdaftar";
+        }
 
         return redirect('/kontak-hobbies');
     }

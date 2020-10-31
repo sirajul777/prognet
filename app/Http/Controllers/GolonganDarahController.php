@@ -14,7 +14,8 @@ class GolonganDarahController extends Controller
      */
     public function index()
     {
-        //
+        $darah = GolonganDarah::all();
+        return view('kontaks.golongan-darah', compact('darah'));
     }
 
     /**
@@ -35,7 +36,11 @@ class GolonganDarahController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $darah = new GolonganDarah();
+        $darah->goldarah = $request->darah;
+        $darah->rhesus = $request->rhesus;
+        $darah->save();
+        return redirect('/golonganDarah');
     }
 
     /**
@@ -55,9 +60,10 @@ class GolonganDarahController extends Controller
      * @param  \App\GolonganDarah  $golonganDarah
      * @return \Illuminate\Http\Response
      */
-    public function edit(GolonganDarah $golonganDarah)
+    public function edit($id)
     {
-        //
+        $darah =  GolonganDarah::find($id);
+        return response()->json($darah);
     }
 
     /**
@@ -69,7 +75,11 @@ class GolonganDarahController extends Controller
      */
     public function update(Request $request, GolonganDarah $golonganDarah)
     {
-        //
+        $darah = GolonganDarah::find($request->iddarah);
+        $darah->goldarah = $request->editDarah;
+        $darah->rhesus = $request->editRhesus;
+        $darah->update();
+        return redirect('/golonganDarah');
     }
 
     /**
@@ -78,8 +88,10 @@ class GolonganDarahController extends Controller
      * @param  \App\GolonganDarah  $golonganDarah
      * @return \Illuminate\Http\Response
      */
-    public function destroy(GolonganDarah $golonganDarah)
+    public function destroy($id)
     {
-        //
+        $delete = GolonganDarah::find($id);
+        $delete->delete();
+        return redirect('/golonganDarah');
     }
 }
