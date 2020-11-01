@@ -97,16 +97,18 @@
             @csrf
              {{ method_field('PUT') }}
             <input type="text" hidden id="idkh" name="idkh">
-            <div class="mb-3">
-                <label for="kh" class="form-label">Nama Hoby</label>
-                <input type="text" name="editkh" class="form-control" id="editkh" aria-describedby="emailHelp" required>
-            </div>
-            
+            @foreach ($k->hobby as $item)
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="isian[]" value="{{ $item->id }}">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            {{ $item->hobby }} <small>isian[{{ $item->id }}]</small>
+                        </label>
+                </div>
+            @endforeach
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary edit" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
             </div>
-            
         </form>
       </div>
      

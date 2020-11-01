@@ -6,6 +6,8 @@ use App\KontakHobby;
 use App\Kontak;
 use App\Hobby;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
 class KontakHobbyController extends Controller
 {
@@ -18,8 +20,9 @@ class KontakHobbyController extends Controller
     {
         $k = Kontak::all();
         $h = Hobby::all();
+        $kh = KontakHobby::all();
 
-        return view('kontaks.kontakHobby', compact('k', 'h'));
+        return view('kontaks.kontakHobby', compact('k', 'h', 'kh'));
     }
 
     /**
@@ -87,9 +90,10 @@ class KontakHobbyController extends Controller
      * @param  \App\KontakHobby  $kontakHobby
      * @return \Illuminate\Http\Response
      */
-    public function edit(KontakHobby $kontakHobby)
+    public function edit(Request $id)
     {
-        //
+        $editKontaks =  KontakHobby::where('kontakid', '=', $id)->get('hobbyid');
+        return response()->json($editKontaks);
     }
 
     /**
@@ -99,9 +103,49 @@ class KontakHobbyController extends Controller
      * @param  \App\KontakHobby  $kontakHobby
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, KontakHobby $kontakHobby)
+    public function update(Request $request, $id)
     {
-        //
+
+        $idKontak = Kontak::find($id);
+        $getHobby = Kontak::all();
+        $idreq = $request->idkh;
+
+        // $req = $request->hobby . $idKontak->hobbyid;
+
+        if ($idKontak) {
+            if (!empty($request->input('isian'))) {
+                $will_delete = [];
+                $hobby_dell = [];
+                foreach ($request->input('isian') as $key => $value) {
+                    $hobby = KontakHobby::where('kontakid', '=', $id)->select('hobbyid')->get();
+                    array_push($will_delete, $hobby);
+                    dd($hobby);
+
+                    foreach ($hobby as $key) {
+
+
+                        return response()->json($key);
+                    }
+
+
+                    // array_push($will_delete, ['isian' => $value]);
+
+                    // $hobby->delete();
+                }
+            }
+            //
+            //     
+            //     $hobby = KontakHobby::where('kontakid', '=', $idKreq)->where('hobbyid', '=', $idKreq)->select('hobbyid')->first('hobbyid');
+            //     if ($request->$idKreq == $hobby) {
+            //         $hobby = KontakHobby::where('kontakid', '=', $idKreq)->where('hobbyid', '=', $idKreq)->select('hobbyid')->get('hobbyid');
+            //         foreach ($hobby as $h) {
+            //             echo "delete hobby " . $h->hobbyid;
+            //         }
+            //     }
+            // }
+        } else {
+            echo "tidak ada kontak";
+        }
     }
 
     /**
@@ -110,8 +154,13 @@ class KontakHobbyController extends Controller
      * @param  \App\KontakHobby  $kontakHobby
      * @return \Illuminate\Http\Response
      */
-    public function destroy(KontakHobby $kontakHobby)
+    public function destroy(Request $request, $kontakHobby)
     {
-        //
+        $checked = $request->input('isian');
+        foreach ($checked as $id => $value) {
+            KontakHobby::where("id", ['isian' => $id])->delete(); //Assuming you have a Todo model. 
+        }
+        KontakHobby::whereIn($checked)->delete();
+        return redirect('/kontak-hobbies');
     }
 }

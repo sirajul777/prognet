@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
     <style>
@@ -82,6 +83,7 @@
   </head>
   <body>
 
+
     @include('layout.navbar')
 
     @include('layout.content')
@@ -152,6 +154,9 @@
         // tombol edit kontak hobby
         $(document).on('click','.editHob',function(){
           var idEdit = $(this).attr('id');
+          $get('kontak-hobbies/'+idEdit+'/edit', function(data){
+            $('#tamkonhob #idkh').val(data.id);
+          })
         });
 
 
