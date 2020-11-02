@@ -22,6 +22,7 @@
                 <td class="table-dark">{{ $hobby->hobby }}</td>
                 <td class="table-dark">
                     <form action="/hobby/{{ $hobby->id }}" method="POST"> 
+                      
                         <button type="button" id="{{ $hobby->id }}" class="btn btn-info editHobby" data-toggle="modal" data-target="#editHobby">Edit</button>
                         
                         @csrf

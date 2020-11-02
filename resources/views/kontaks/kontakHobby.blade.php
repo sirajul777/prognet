@@ -35,7 +35,7 @@
                     </ul>
                 </td>
                 <td class="table-dark">
-                        <button type="button" id="{{ $k->id }}" class="btn btn-info editHob" data-toggle="modal" data-target="#editkh">Edit</button>
+                        <a type="button" href="{{ route('kontak-hobbies.edit',$k->id) }}" id="{{ $k->id }}" class="btn btn-info">Edit</a>
                         
                         <button type="submit" id="{{ $k->id }}" class="btn btn-success tamHobby" data-target="#tambah" data-toggle="modal">Tambah</button>
                 </td>               
@@ -84,34 +84,3 @@
 
 
 @endsection
-<!-- Edit kh Modal -->
-<div class="modal fade" id="editkh" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Insert Data Baru</h5>
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="updatekh" action="{{ route('kontak-hobbies.update',$k) }}" method="POST">
-            @csrf
-             {{ method_field('PUT') }}
-            <input type="text" hidden id="idkh" name="idkh">
-            @foreach ($k->hobby as $item)
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="isian[]" value="{{ $item->id }}">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            {{ $item->hobby }} <small>isian[{{ $item->id }}]</small>
-                        </label>
-                </div>
-            @endforeach
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary edit" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </div>
-        </form>
-      </div>
-     
-    </div>
-  </div>
-</div>

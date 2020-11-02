@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::resource('kontak', 'KontakController');
 Route::resource('/hobby', 'HobbyController');
 Route::resource('/kontak-hobbies', 'KontakHobbyController');
+Route::POST('/kontak-hobbies/delete', 'KontakHobbyController@destroy');
 Route::resource('/golonganDarah', 'GolonganDarahController');
