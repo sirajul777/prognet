@@ -6,8 +6,6 @@ use App\KontakHobby;
 use App\Kontak;
 use App\Hobby;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
 class KontakHobbyController extends Controller
 {
@@ -197,13 +195,10 @@ class KontakHobbyController extends Controller
                                 KontakHobby::find($idkh)->delete();
                             }
                         }
-                        // return response()->json($idKontakHobby);
                     }
                 } else {
                     return redirect()->back();
                 }
-
-                // Hobby::where("hobby", ['isian' => $value]); //Assuming you have a Todo model. 
             }
         } else {
             return redirect()->back();

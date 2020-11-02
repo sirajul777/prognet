@@ -53,7 +53,6 @@ class KontakController extends Controller
         $kh->kontakid = $kontak->id;
         $kh->hobbyid = $request->hobby;
         $kh->save();
-
         return redirect('/kontak');
     }
 
