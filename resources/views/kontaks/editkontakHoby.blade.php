@@ -21,6 +21,5 @@
         <a href="/kontak-hobbies" class="btn btn-secondary">Back</a>
         <button type="submit" class="btn btn-danger">Delete</button>
     </div>
-    
 </form>
 @endsection
