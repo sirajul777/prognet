@@ -27,11 +27,9 @@
                             @if ($hoby)
                                 <li> {{ $hoby->hobby }} </li>
                             @else
-                            None
+                                None
                             @endif
                         @endforeach
-                            
-                       
                     </ul>
                 </td>
                 <td class="table-dark">

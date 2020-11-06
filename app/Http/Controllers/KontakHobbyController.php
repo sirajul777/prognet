@@ -47,8 +47,6 @@ class KontakHobbyController extends Controller
         $idKreq = $request->idkonHob;
         $idhreq = $request->hobby;
         $idKontak = KontakHobby::where('kontakid', '=', $idKreq)->first('kontakid');
-
-
         // request dari database
         //todo kontak ada
         if ($idKontak != null) {
@@ -169,7 +167,6 @@ class KontakHobbyController extends Controller
         $h = Hobby::all();
         $kh = KontakHobby::all();
         $checked = $request->input('isian');
-
         // todo jika checklist ada
         if ($checked) {
             //! looping isi checkbox
