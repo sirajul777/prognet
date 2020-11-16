@@ -5,48 +5,46 @@
 @section('mid')
 
 <div class="table-responsive">
-<table class="table table-warning table-triped text-center">
+  <table class="table table-warning table-triped text-center">
     <tr>
-        <th>no</th>
-        <th>darah</th>
-        <th>Rhesus</th>
-        
-        <th>opsi</th>
+      <th>no</th>
+      <th>darah</th>
+      <th>Rhesus</th>
+
+      <th>opsi</th>
     </tr>
     <?php 
 
     $no = 1;
     
     ?>
-        @foreach($darah as $darah)
-            <tr>
-                <td class="table-dark"><?= $no++ ?></td>
-                <td class="table-dark">{{ $darah->goldarah }}</td>
-                <td class="table-dark">{{ $darah->rhesus }}</td>
-                <td class="table-dark">
-                    <form action="/golonganDarah/{{ $darah->id }}" method="POST"> 
-                        <button type="button" id="{{ $darah->id }}" class="btn btn-info editDarah" data-toggle="modal" data-target="#editdarah">Edit</button>
-                        
-                        @csrf
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-                    
-            
-                
-            </tr>
-        @endforeach
+    @foreach($darah as $darah)
+    <tr>
+      <td class="table-dark"><?= $no++ ?></td>
+      <td class="table-dark">{{ $darah->goldarah }}</td>
+      <td class="table-dark">{{ $darah->rhesus }}</td>
+      <td class="table-dark">
+        <form action="/golonganDarah/{{ $darah->id }}" method="POST">
+          <button type="button" id="{{ $darah->id }}" class="btn btn-info editDarah" data-toggle="modal"
+            data-target="#editdarah">Edit</button>
 
-        
-    </table>
-</div>  
+          @csrf
+          {{ method_field('DELETE') }}
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </td>
+    </tr>
+    @endforeach
+
+
+  </table>
+</div>
 @endsection
 
 
 @section('modal')
-    
-    <!-- Button trigger modal -->
+
+<!-- Button trigger modal -->
 <button type="button" class="btn btn-success mb-5" data-toggle="modal" data-target="#exampleModal">
   Insert Data
 </button>
@@ -59,24 +57,24 @@
       </div>
       <div class="modal-body">
         <form action="{{ route('golonganDarah.store') }}" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="darah" class="form-label">Golongan Darah</label>
-                <input type="text" name="darah" class="form-control" id="darah" aria-describedby="emailHelp" required>
-            </div>
-            <div class="mb-3">
-                <label for="rhesus" class="form-label">Rhesus</label>
-                <input type="text" name="rhesus" class="form-control" id="rhesus" aria-describedby="emailHelp" required>
-            </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary edit" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-            
+          @csrf
+          <div class="mb-3">
+            <label for="darah" class="form-label">Golongan Darah</label>
+            <input type="text" name="darah" class="form-control" id="darah" aria-describedby="emailHelp" required>
+          </div>
+          <div class="mb-3">
+            <label for="rhesus" class="form-label">Rhesus</label>
+            <input type="text" name="rhesus" class="form-control" id="rhesus" aria-describedby="emailHelp" required>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary edit" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+
         </form>
       </div>
-     
+
     </div>
   </div>
 </div>
@@ -93,26 +91,28 @@
       </div>
       <div class="modal-body">
         <form id="updatedarah" action="{{ route('golonganDarah.update',$darah) }}" method="POST">
-            @csrf
-             {{ method_field('PUT') }}
-            <input type="text" hidden id="iddarah" name="iddarah">
-            <div class="mb-3">
-                <label for="darah" class="form-label">Golongan Darah</label>
-                <input type="text" name="editDarah" class="form-control" id="editDarah" aria-describedby="emailHelp" required>
-            </div>
-            <div class="mb-3">
-                <label for="rhesus" class="form-label">Rheusus</label>
-                <input type="text" name="editRhesus" class="form-control" id="editRhesus" aria-describedby="emailHelp" required>
-            </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary edit" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-            
+          @csrf
+          {{ method_field('PUT') }}
+          <input type="text" hidden id="iddarah" name="iddarah">
+          <div class="mb-3">
+            <label for="darah" class="form-label">Golongan Darah</label>
+            <input type="text" name="editDarah" class="form-control" id="editDarah" aria-describedby="emailHelp"
+              required>
+          </div>
+          <div class="mb-3">
+            <label for="rhesus" class="form-label">Rheusus</label>
+            <input type="text" name="editRhesus" class="form-control" id="editRhesus" aria-describedby="emailHelp"
+              required>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary edit" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+
         </form>
       </div>
-     
+
     </div>
   </div>
 </div>

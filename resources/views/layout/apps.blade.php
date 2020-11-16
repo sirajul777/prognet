@@ -113,16 +113,18 @@
         const xhttp = new XMLHttpRequest;;
         
         
-        // tombol edit kontak
+       // tombol edit kontak
         $(document).on('click','.edit',function(){
+          
           var idEdit = $(this).attr('id');
-          $.get('kontak/' + idEdit +'/edit', function (data) {
-            $('#updateData #id').val(idEdit);
-            $('#updateData #nama').val(data.nama);
+          $.get('kontak/' + idEdit, function (data) {
+            $('#updateData #edid').val(idEdit);
+            $('#updateData #ednama').val(data.nama);
             $('#updateData #alamat').val(data.alamat);
             $('#updateData #email').val(data.email);
             $('#updateData #telepon').val(data.telepon);
-            $('#updateData #golonganD').val(data.darahid)
+            $('#updateData #golonganD').val(data.darahid);
+            $('#updateData #hobby').val(data.hobby.map((item)=>item.id));
           })
         });
 

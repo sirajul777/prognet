@@ -6,6 +6,7 @@ use App\KontakHobby;
 use App\Kontak;
 use App\Hobby;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KontakHobbyController extends Controller
 {
@@ -97,7 +98,6 @@ class KontakHobbyController extends Controller
             foreach ($h->hobby as $item) {
                 array_push($hobby_dell,  $item->hobby);
             }
-            // return response()->json($hobby_dell);
         }
 
         return view('kontaks.editkontakHoby', compact('edit', 'hobby_dell', 'idk'));
@@ -112,47 +112,7 @@ class KontakHobbyController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        // $idKontak = Kontak::find($id);
-        // $getHobby = Kontak::all();
-        // $idreq = $request->idkh;
-
-        // // $req = $request->hobby . $idKontak->hobbyid;
-
-        // if ($idKontak) {
-        //     if (!empty($request->input('isian'))) {
-        //         $will_delete = [];
-        //         $hobby_dell = [];
-        //         foreach ($request->input('isian') as $key => $value) {
-        //             $hobby = KontakHobby::where('kontakid', '=', $id)->select('hobbyid')->get();
-        //             array_push($will_delete, $hobby);
-        //             dd($hobby);
-
-        //             foreach ($hobby as $key) {
-
-
-        //                 return response()->json($key);
-        //             }
-
-
-        //             // array_push($will_delete, ['isian' => $value]);
-
-        //             // $hobby->delete();
-        //         }
-        //     }
-        //     //
-        //     //     
-        //     //     $hobby = KontakHobby::where('kontakid', '=', $idKreq)->where('hobbyid', '=', $idKreq)->select('hobbyid')->first('hobbyid');
-        //     //     if ($request->$idKreq == $hobby) {
-        //     //         $hobby = KontakHobby::where('kontakid', '=', $idKreq)->where('hobbyid', '=', $idKreq)->select('hobbyid')->get('hobbyid');
-        //     //         foreach ($hobby as $h) {
-        //     //             echo "delete hobby " . $h->hobbyid;
-        //     //         }
-        //     //     }
-        //     // }
-        // } else {
-        //     echo "tidak ada kontak";
-        // }
+     //   
     }
 
     /**
@@ -160,15 +120,17 @@ class KontakHobbyController extends Controller
      *
      * @param  \App\KontakHobby  $kontakHobby
      * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
+     **/
+    
+    
+     public function destroy(Request $request)
     {
         $k = Kontak::all();
         $h = Hobby::all();
         $kh = KontakHobby::all();
         $checked = $request->input('isian');
         // todo jika checklist ada
-        if ($checked) {
+        if($checked) {
             //! looping isi checkbox
             foreach ($checked as $selector) {
                 $data = Hobby::where('hobby', '=', $selector)->select('id')->get();
@@ -203,4 +165,6 @@ class KontakHobbyController extends Controller
 
         return view('kontaks.kontakHobby', compact('k', 'h', 'kh'));
     }
+
 }
+
